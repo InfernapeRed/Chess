@@ -1,0 +1,140 @@
+<MyButton@Button+ButtonBehavior>:
+    font_size:'32sp'
+    canvas.before:
+        Color:
+            rgba:.8,.8,.8,1
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    
+<CubeWidget>:
+    on_press:root.on_click()
+    canvas.before:
+        Color:
+            rgba:(0,0,0,1)
+        Line:
+            width:2
+            rectangle:0,0,self.width,self.height
+        Color:
+            group:'color'
+            rgba:root.initcolor
+        Rectangle:
+            group:'color'
+            size:root.size
+    
+<CrazyPiece>:
+    size_hint:1,None
+    height:self.width
+    #anchor_x:'right'
+    #anchor_y:'bottom'
+    canvas.before:
+        Color:
+            group:'color'
+            rgba:root.initcolor
+        Rectangle:
+            group:'color'
+            size:self.size
+<HeadBar>:
+    orientation:'horizontal'
+    size_hint:1,1
+    BoxLayout:
+        orientation:'vertical'
+        size_hint:.8,1
+        Label:
+            id:username
+            font_size:'20sp'
+            text:root.username
+        Label:
+            id:time
+            font_size:'20sp'
+            text:'(Time)'
+    BoxLayout:
+        orientation:'horizontal'
+        pos:self.pos
+        size_hint:1,None
+        spacing:'3dp'
+        height:(self.width-dp(4*self.spacing))/5
+        CrazyPiece:
+            id:pawn
+            on_press:root.place_piece(pawn)
+        CrazyPiece:
+            id:knight
+            on_press:root.place_piece(knight)
+        CrazyPiece:
+            id:bishop
+            on_press:root.place_piece(bishop)
+        CrazyPiece:
+            id:rook
+            on_press:root.place_piece(rook)
+        CrazyPiece:
+            id:queen
+            on_press:root.place_piece(queen)
+<NewBoard>:
+    rows:8
+    cols:8
+    size_hint:1,None
+    height:root.width
+<PairingScreen>:
+    BoxLayout:
+        orientation:'vertical'
+        pos_hint:{'x':.3,'y':.3}
+        size_hint:.3,.3
+        spacing:'10dp'
+        MyButton:
+            id:button1
+            text:'(EMPTY)'
+            on_press:root.on_click(button1,button1.last_touch)
+        Label:
+            font_size:'40sp'
+            text:'Table'
+        MyButton:
+            id:button2
+            text:'(EMPTY)'
+            on_press:root.on_click(button2,button2.last_touch)
+
+<CredentialScreen>:
+    BoxLayout:
+        orientation:'vertical'
+        GridLayout:
+            rows:3
+            cols:2
+            size_hint:1,.8
+            orientation:'tb-lr'
+            Label:
+                font_size:'25sp'
+                text:'Enter IP:'
+            Label:
+                font_size:'25sp'
+                text:'Enter PORT:'
+            Label:
+                font_size:'25sp'
+                text:'Enter username:'
+            TextInput:
+                font_size:'25sp'
+                id:ip   
+                multiline:False
+            TextInput:
+                font_size:'25sp'
+                id:port 
+                multiline:False
+            TextInput:
+                font_size:'25sp'
+                id:username 
+                multiline:False
+        Button:
+            size_hint:1,.2
+            pos:root.center
+            width:self.height
+            font_size:'30sp'
+            text:'Submit'
+            on_press:root.on_click(ip,port,username)
+             
+            
+    
+
+        
+    
+    
+         
+        
+                
